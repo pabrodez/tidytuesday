@@ -50,12 +50,11 @@ mean_price_plot <-
   ylim(letters[1], unique(top_publishers$publisher)) +  ## create dummy levels of discrete scale to create space between center and first level
   annotate("segment", x = seq(2003.5, 2017.5, 1), y = 2, xend = seq(2003.5, 2017.5, 1), yend = 6, alpha = .1) +
   theme_void() +
-  theme(text = element_text(color = "#CCCCCC", family = "Ubuntu Mono"),
+  theme(text = element_text(color = "#CCCCCC", family = "Avant Garde"),
         plot.background = element_rect(fill = "transparent"), 
         panel.grid = element_blank(),
         axis.title = element_blank(),
         axis.text = element_blank(),
-        # axis.text.x = element_text(margin = margin(t = -5, unit = "mm"), color = "#CCCCCC"),
         legend.position = "bottom", 
         legend.key.height = unit(1, "mm"),
         legend.spacing.x = unit(4, "mm"))
@@ -75,14 +74,14 @@ main_circle_plot <-
                         name = "Games released",
                         guide = guide_legend(label.position = "bottom", title.position = "top", title.hjust = .5)) +
   scale_x_continuous(breaks = 2004:2018, labels = function(x) substr(x, 3, 4), limits = c(2003, 2019)) +
-  geom_text(aes(label = publisher, x = 2018.55), vjust = 0.5, hjust = 0, color = "#CCCCCC", family = "Ubuntu Mono", size = 4) +
+  geom_text(aes(label = publisher, x = 2018.55), vjust = 0.5, hjust = 0, color = "#CCCCCC", family = "Avant Garde", size = 4) +
   coord_polar() +
   ylim(letters[1:10], unique(top_publishers$publisher)) +  ## create dummy levels of discrete scale to create space between center and first level
   annotate("segment", x = seq(2003.5, 2017.5, 1), y = 11, xend = seq(2003.5, 2017.5, 1), yend = 15, alpha = .1) +
   labs(title = "Games released and mean price by year by top 5 publishers",
        caption = "Source: Steam Spy | Graphic: @pabrodez") +
   theme_minimal() +
-  theme(text = element_text(color = "#CCCCCC", family = "Ubuntu Mono"),
+  theme(text = element_text(color = "#CCCCCC", family = "Avant Garde"),
         plot.background = element_rect(fill = "#405450"), 
         panel.grid = element_blank(),
         axis.title = element_blank(),
@@ -92,8 +91,8 @@ main_circle_plot <-
         legend.key.height = unit(1, "mm"),
         legend.spacing.x = unit(4, "mm"),
         plot.margin = margin(.5, 1, .5, 1, unit = "cm"),
-        plot.caption = element_text(margin = margin(t = 2, unit = "cm")),
-        plot.title = element_text(hjust = .5))
+        plot.caption = element_text(margin = margin(t = 100)),
+        plot.title = element_text(hjust = .5, margin = margin(t = 25, b = 30)))
 
 legend_games <- get_legend(main_circle_plot)
 main_circle_plot <- main_circle_plot + theme(legend.position = "none")
@@ -101,7 +100,7 @@ main_circle_plot <- main_circle_plot + theme(legend.position = "none")
 arranged_plot <- 
   ggdraw() +
   draw_plot(main_circle_plot, 0, 0, 1, 1) +
-  draw_plot(mean_price_plot, .225, .25, .55, .55) + ## adjusting position has been a source of affliction 
+  draw_plot(mean_price_plot, .225, .245, .55, .55) + ## adjusting position has been a source of affliction 
   draw_plot(legend_price, .2, .1, .1, .1) +
   draw_plot(legend_games, .7, .1, .1, .1)
 
